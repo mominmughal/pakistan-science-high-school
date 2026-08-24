@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pakistan Science High School — Sialkot</title>
+<meta name="description" content="Pakistan Science High School, Quaid-e-Azam Street, Hamza Ghouse, Sialkot. Admissions open for students. Apply for teaching positions.">
+
+<!-- Google Fonts: Fraunces (headings), Inter (body), IBM Plex Mono (labels/stats) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="pshs.css">
+</head>
+<body>
+
+<!-- Shared SVG goo filter — makes the blobs behind the hero and medal badges feel liquid rather than flat shapes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="liquid-goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur" />
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11" result="goo" />
+      <feBlend in="SourceGraphic" in2="goo" />
+    </filter>
+  </defs>
+</svg>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="36" height="36">
+          <circle cx="20" cy="20" r="3.4" fill="var(--pine)"/>
+          <ellipse cx="20" cy="20" rx="17" ry="7" fill="none" stroke="var(--pine)" stroke-width="1.4"/>
+          <ellipse cx="20" cy="20" rx="17" ry="7" fill="none" stroke="var(--amber)" stroke-width="1.4" transform="rotate(60 20 20)"/>
+          <ellipse cx="20" cy="20" rx="17" ry="7" fill="none" stroke="var(--ink)" stroke-width="1.4" transform="rotate(120 20 20)"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <strong>Pakistan Science High School</strong>
+        <small>Sialkot</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#about">About</a>
+      <a href="#academics">Academics</a>
+      <a href="#results">Results</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#careers">Careers</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-cta">
+      <a href="#admissions" class="btn btn-primary">Apply Now</a>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="heroSection">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="liquid-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">Sialkot · Since 1993</p>
+      <h1>Where curiosity is <span>graded on evidence.</span></h1>
+      <p class="hero-lede">
+        Pakistan Science High School prepares students in Hamza Ghouse, Sialkot for
+        matriculation and beyond, with a focus on Physics, Chemistry, Biology,
+        Mathematics and Computer Science taught by qualified, dedicated faculty.
+      </p>
+      <div class="hero-actions">
+        <a href="#admissions" class="btn btn-primary">Apply as a Student</a>
+        <a href="#careers" class="btn btn-ghost">Apply for Teaching</a>
+      </div>
+    </div>
+
+    <div class="hero-orbit" aria-hidden="true">
+      <svg viewBox="0 0 320 320" width="320" height="320">
+        <circle cx="160" cy="160" r="10" fill="var(--pine)"/>
+        <g class="orbit-group">
+          <ellipse cx="160" cy="160" rx="140" ry="55" class="orbit-ring orbit-1"/>
+          <circle cx="300" cy="160" r="6" fill="var(--amber)" class="orbit-e orbit-e1"/>
+        </g>
+        <g class="orbit-group" transform="rotate(60 160 160)">
+          <ellipse cx="160" cy="160" rx="140" ry="55" class="orbit-ring orbit-2"/>
+          <circle cx="20" cy="160" r="6" fill="var(--pine)" class="orbit-e orbit-e2"/>
+        </g>
+        <g class="orbit-group" transform="rotate(120 160 160)">
+          <ellipse cx="160" cy="160" rx="140" ry="55" class="orbit-ring orbit-3"/>
+          <circle cx="160" cy="105" r="6" fill="var(--ink)" class="orbit-e orbit-e3"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wrap stats-row reveal">
+    <div class="stat"><span class="stat-num">1993</span><span class="stat-label">Founded</span></div>
+    <div class="stat"><span class="stat-num">05</span><span class="stat-label">Core Subjects</span></div>
+    <div class="stat"><span class="stat-num">9–10</span><span class="stat-label">Matric Classes</span></div>
+    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Qualified Faculty</span></div>
+  </div>
+</section>
+
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C 240,10 480,70 720,40 C 960,10 1200,70 1440,40 L1440,100 L0,100 Z" fill="var(--paper)"/></svg>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="section-head reveal">
+      <p class="eyebrow">About the School</p>
+      <h2>A science-first education, rooted in Sialkot.</h2>
+    </div>
+    <div class="about-body reveal">
+      <p>
+        Pakistan Science High School is located on Quaid-e-Azam Street, Hamza Ghouse,
+        Sialkot. We provide a disciplined, science-focused environment for students
+        working toward their matriculation, with small class sizes and close
+        attention from subject teachers.
+      </p>
+      <p>
+        Our aim is simple: build a strong foundation in the sciences and mathematics,
+        while keeping every student's character, discipline and results in view.
+      </p>
+      <ul class="check-list">
+        <li>Qualified subject specialists for Physics, Chemistry, Biology, Maths &amp; Computer Science</li>
+        <li>Regular tests, parent-teacher contact and result tracking</li>
+        <li>Safe, disciplined campus with a focus on attendance and conduct</li>
+      </ul>
+      <p class="motto">"Unity of Head and Hand"</p>
+
+      <div class="leadership">
+        <h3>School Leadership</h3>
+        <div class="leadership-grid reveal-group">
+          <div class="leader-card reveal" style="--i:0">
+            <span class="leader-initial">Z</span>
+            <div>
+              <strong>Muhammad Zulfiqar</strong>
+              <span>Director</span>
+            </div>
+          </div>
+          <div class="leader-card reveal" style="--i:1">
+            <span class="leader-initial">G</span>
+            <div>
+              <strong>Muhammad Gulzar</strong>
+              <span>Director</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,50 C 240,80 480,20 720,50 C 960,80 1200,20 1440,50 L1440,100 L0,100 Z" fill="var(--paper-2)"/></svg>
+</div>
+
+<!-- ============ ACADEMICS ============ -->
+<section class="section section-alt" id="academics">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Academic Programs</p>
+      <h2>Subjects our students major in.</h2>
+    </div>
+
+    <div class="subject-grid reveal-group">
+      <article class="subject-card reveal" style="--i:0">
+        <span class="subject-code">PHY</span>
+        <h3>Physics</h3>
+        <p>Mechanics, waves, electricity and modern physics, taught with regular lab demonstration.</p>
+      </article>
+      <article class="subject-card reveal" style="--i:1">
+        <span class="subject-code">CHEM</span>
+        <h3>Chemistry</h3>
+        <p>Organic, inorganic and physical chemistry fundamentals, built for board exam success.</p>
+      </article>
+      <article class="subject-card reveal" style="--i:2">
+        <span class="subject-code">BIO</span>
+        <h3>Biology</h3>
+        <p>Human biology, botany and zoology, with diagram-based practice for exams.</p>
+      </article>
+      <article class="subject-card reveal" style="--i:3">
+        <span class="subject-code">MATH</span>
+        <h3>Mathematics</h3>
+        <p>Algebra, geometry and trigonometry with weekly problem-solving practice.</p>
+      </article>
+      <article class="subject-card reveal" style="--i:4">
+        <span class="subject-code">CS</span>
+        <h3>Computer Science</h3>
+        <p>Computer fundamentals and basic programming to prepare students for a digital future.</p>
+      </article>
+      <article class="subject-card reveal" style="--i:5">
+        <span class="subject-code">ENG</span>
+        <h3>English &amp; Urdu</h3>
+        <p>Language and communication skills built alongside the core science curriculum.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C 240,10 480,70 720,40 C 960,10 1200,70 1440,40 L1440,100 L0,100 Z" fill="var(--paper-2)"/></svg>
+</div>
+
+<!-- ============ MATRIC RESULTS 2026 ============ -->
+<section class="section section-alt" id="results">
+  <div class="wrap">
+    <div class="section-head results-head reveal">
+      <div>
+        <p class="eyebrow">We Are Proud Of Our Students</p>
+        <h2>Matric Results 2026</h2>
+        <p class="section-sub">Alhamdulillah — the entire batch has passed. Total marks out of 1200. Our top 3 position holders are marked with a medal.</p>
+      </div>
+      <div class="results-search">
+        <label for="resultSearch">Search by name or roll no.</label>
+        <input type="text" id="resultSearch" placeholder="e.g. Huzaira or 562173">
+      </div>
+    </div>
+
+    <div class="table-scroll reveal">
+      <table class="results-table" id="resultsTable">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Roll No.</th>
+            <th>Total Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Huzaira</td><td>562173</td><td>1076</td></tr>
+          <tr><td>2</td><td>Musfira</td><td>562830</td><td>1045</td></tr>
+          <tr><td>3</td><td>Noor Jannat</td><td>563238</td><td>1018</td></tr>
+          <tr><td>4</td><td>Fajar Imran</td><td>562527</td><td>1001</td></tr>
+          <tr><td>5</td><td>Ume-Maktum</td><td>562067</td><td>986</td></tr>
+          <tr><td>6</td><td>Hafsa Asif</td><td>562725</td><td>952</td></tr>
+          <tr><td>7</td><td>Aroosh Imran</td><td>562752</td><td>948</td></tr>
+          <tr><td>8</td><td>Maryam</td><td>565075</td><td>887</td></tr>
+          <tr><td>9</td><td>Hina</td><td>565561</td><td>880</td></tr>
+          <tr><td>10</td><td>Maleeha Idrees</td><td>562424</td><td>878</td></tr>
+          <tr><td>11</td><td>Amna Shahid</td><td>565536</td><td>877</td></tr>
+          <tr><td>12</td><td>Noor Fatima</td><td>563162</td><td>876</td></tr>
+          <tr><td>13</td><td>Aroosh</td><td>565457</td><td>873</td></tr>
+          <tr><td>14</td><td>Kashaf</td><td>561863</td><td>853</td></tr>
+          <tr><td>15</td><td>Bushra Aman</td><td>562330</td><td>852</td></tr>
+          <tr><td>16</td><td>Minahil Hafeez</td><td>562295</td><td>851</td></tr>
+          <tr><td>17</td><td>Noor Shafiq</td><td>562104</td><td>849</td></tr>
+          <tr><td>18</td><td>Hadia Razzaq</td><td>644503</td><td>848</td></tr>
+          <tr><td>19</td><td>Radia Fatimma</td><td>565088</td><td>837</td></tr>
+          <tr><td>20</td><td>Noor Fatima Tahir</td><td>565168</td><td>819</td></tr>
+          <tr><td>21</td><td>Kalsoom Irfan</td><td>643746</td><td>793</td></tr>
+          <tr><td>22</td><td>Esha Noor</td><td>645829</td><td>787</td></tr>
+          <tr><td>23</td><td>Esha Noor Shoukat</td><td>562210</td><td>759</td></tr>
+          <tr><td>24</td><td>Fatima Asim</td><td>561901</td><td>750</td></tr>
+          <tr><td>25</td><td>Razia</td><td>563137</td><td>743</td></tr>
+          <tr><td>26</td><td>Fatimma Irfan</td><td>562633</td><td>740</td></tr>
+          <tr><td>27</td><td>Memoona Zul</td><td>643901</td><td>722</td></tr>
+          <tr><td>28</td><td>Kashaf Imaan</td><td>644247</td><td>717</td></tr>
+          <tr><td>29</td><td>Sara Khan</td><td>565249</td><td>706</td></tr>
+          <tr><td>30</td><td>Maira Arshad</td><td>565339</td><td>690</td></tr>
+          <tr><td>31</td><td>Sadia Kashaf</td><td>562562</td><td>675</td></tr>
+          <tr><td>32</td><td>Ayesha Nasir</td><td>646287</td><td>627</td></tr>
+          <tr><td>33</td><td>Fajjar Shahid</td><td>646169</td><td>625</td></tr>
+          <tr><td>34</td><td>Amna Ramzan</td><td>643881</td><td>570</td></tr>
+        </tbody>
+      </table>
+      <p class="form-note" id="noResultsNote" style="display:none;">No matching student found.</p>
+    </div>
+
+    <p class="results-banner">Alhamdulillah! The entire batch has passed.<br>
+      <small>Your hard work, dedication and perseverance have led to this achievement.</small>
+    </p>
+  </div>
+</section>
+
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,50 C 240,80 480,20 720,50 C 960,80 1200,20 1440,50 L1440,100 L0,100 Z" fill="var(--paper)"/></svg>
+</div>
+
+<!-- ============ ADMISSIONS (APPLY AS STUDENT) ============ -->
+<section class="section" id="admissions">
+  <div class="wrap admissions-grid">
+    <div class="section-head reveal">
+      <p class="eyebrow">Admissions</p>
+      <h2>Apply now as a student.</h2>
+      <p class="section-sub">
+        Fill in the form and send it to us on WhatsApp in one tap, or call the
+        numbers below. Our admissions desk will contact you to confirm your seat.
+      </p>
+
+      <ol class="steps">
+        <li><span>01</span> Submit the form</li>
+        <li><span>02</span> Our team calls you back</li>
+        <li><span>03</span> Visit campus &amp; confirm admission</li>
+      </ol>
+    </div>
+
+    <form class="app-form reveal" id="studentForm" novalidate>
+      <div class="form-row">
+        <label for="sName">Student's Full Name</label>
+        <input type="text" id="sName" required placeholder="e.g. Ahmed Raza">
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label for="sFather">Father's Name</label>
+          <input type="text" id="sFather" required placeholder="Father's name">
+        </div>
+        <div>
+          <label for="sAge">Age</label>
+          <input type="number" id="sAge" min="2" max="25" required placeholder="e.g. 14">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="sPrevSchool">Previous Institute</label>
+        <input type="text" id="sPrevSchool" placeholder="Name of last school attended (if any)">
+      </div>
+      <div class="form-row">
+        <label for="sGrade">Applying For (Class)</label>
+        <select id="sGrade" required>
+          <option value="" disabled selected>Select class</option>
+          <option>Play Group</option>
+          <option>Prep</option>
+          <option>Class One</option>
+          <option>Class Two</option>
+          <option>Class Three</option>
+          <option>Class Four</option>
+          <option>Class Five</option>
+          <option>Class Six</option>
+          <option>Class Seven</option>
+          <option>Pre-Nine (Science)</option>
+          <option>Pre-Nine (Arts)</option>
+          <option>Class Nine (Science)</option>
+          <option>Class Nine (Arts)</option>
+          <option>Class Ten (Science)</option>
+          <option>Class Ten (Arts)</option>
+        </select>
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label for="sPhone">Phone / WhatsApp Number</label>
+          <input type="tel" id="sPhone" required placeholder="03XX-XXXXXXX">
+        </div>
+        <div>
+          <label for="sEmail">Email (optional)</label>
+          <input type="email" id="sEmail" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="sMsg">Message (optional)</label>
+        <textarea id="sMsg" rows="3" placeholder="Anything we should know?"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Send Application on WhatsApp</button>
+      <p class="form-note" id="studentNote"></p>
+    </form>
+  </div>
+</section>
+
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C 240,10 480,70 720,40 C 960,10 1200,70 1440,40 L1440,100 L0,100 Z" fill="var(--paper-2)"/></svg>
+</div>
+
+<!-- ============ CAREERS (APPLY FOR TEACHING) ============ -->
+<section class="section section-alt" id="careers">
+  <div class="wrap admissions-grid">
+    <div class="section-head reveal">
+      <p class="eyebrow">Careers</p>
+      <h2>Apply for a teaching position.</h2>
+      <p class="section-sub">
+        We're always glad to hear from qualified teachers. Share your details
+        and subject specialization, and our administration will get in touch.
+      </p>
+
+      <ol class="steps">
+        <li><span>01</span> Submit the form</li>
+        <li><span>02</span> We review your qualification</li>
+        <li><span>03</span> Interview at the campus</li>
+      </ol>
+    </div>
+
+    <form class="app-form reveal" id="teacherForm" novalidate>
+      <div class="form-row two-col">
+        <div>
+          <label for="tName">Full Name</label>
+          <input type="text" id="tName" required placeholder="Your full name">
+        </div>
+        <div>
+          <label for="tFather">Father's Name</label>
+          <input type="text" id="tFather" required placeholder="Father's name">
+        </div>
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label for="tAge">Age</label>
+          <input type="number" id="tAge" min="18" max="70" required placeholder="e.g. 28">
+        </div>
+        <div>
+          <label for="tExp">Years of Experience</label>
+          <input type="text" id="tExp" placeholder="e.g. 3 years">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="tSubject">Subject Specialization</label>
+        <input type="text" id="tSubject" required placeholder="e.g. Physics, Chemistry">
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label for="tPhone">Phone / WhatsApp Number</label>
+          <input type="tel" id="tPhone" required placeholder="03XX-XXXXXXX">
+        </div>
+        <div>
+          <label for="tEmail">Email (optional)</label>
+          <input type="email" id="tEmail" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="tQual">Qualification</label>
+        <input type="text" id="tQual" required placeholder="e.g. MSc Physics, B.Ed">
+      </div>
+      <div class="form-row">
+        <label for="tDegree">Upload Your Masters or Bachelors Degree</label>
+        <div class="file-field">
+          <input type="file" id="tDegree" accept=".pdf,.jpg,.jpeg,.png">
+        </div>
+        <p class="file-field-hint">WhatsApp text links can't carry file attachments — after WhatsApp opens with your details filled in, please attach the degree file to that chat yourself before sending.</p>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Send Application on WhatsApp</button>
+      <p class="form-note" id="teacherNote"></p>
+    </form>
+  </div>
+</section>
+
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,50 C 240,80 480,20 720,50 C 960,80 1200,20 1440,50 L1440,100 L0,100 Z" fill="var(--paper)"/></svg>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="wrap contact-grid">
+    <div class="section-head reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Visit or reach out to us.</h2>
+    </div>
+
+    <div class="contact-cards reveal-group">
+      <div class="contact-card reveal" style="--i:0">
+        <h3>Address</h3>
+        <p>Quaid-e-Azam Street, Hamza Ghouse,<br>Sialkot, Pakistan</p>
+      </div>
+      <div class="contact-card reveal" style="--i:1">
+        <h3>WhatsApp / Phone</h3>
+        <p>Muhammad Gulzar<br><a href="https://wa.me/923217101985" target="_blank" rel="noopener">0321-7101985</a></p>
+        <p>Muhammad Zulfiqar<br><a href="https://wa.me/923216142051" target="_blank" rel="noopener">0321-6142051</a></p>
+      </div>
+      <div class="contact-card reveal" style="--i:2">
+        <h3>Email</h3>
+        <p><a href="mailto:pshs.skt@gmail.com">pshs.skt@gmail.com</a></p>
+      </div>
+      <div class="contact-card reveal" style="--i:3">
+        <h3>Office Hours</h3>
+        <p>Monday – Saturday<br>8:00 AM – 2:00 PM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>&copy; <span id="year"></span> Pakistan Science High School, Sialkot. All rights reserved.</p>
+    <a href="#top" class="back-top">Back to top ↑</a>
+  </div>
+</footer>
+
+<button id="backToTopBtn" class="fab-top" aria-label="Back to top">↑</button>
+
+<script src="pshs.js"></script>
+</body>
+</html>
