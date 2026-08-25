@@ -103,6 +103,7 @@ button{ font-family: inherit; cursor:pointer; }
   flex-direction:column; justify-content:space-between; padding:0;
 }
 .nav-toggle span{ display:block; height:2px; background:var(--ink); border-radius:2px; }
+.header-cta{ display:flex; align-items:center; gap:10px; }
 
 /* ---------- HERO ---------- */
 .hero{ position:relative; overflow:hidden; padding-top: 64px; }
@@ -223,8 +224,8 @@ button{ font-family: inherit; cursor:pointer; }
   font-family: var(--font-mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
   color: var(--ink-70); background: var(--paper-2);
 }
-.results-table td:nth-child(3){ color: var(--amber); font-family: var(--font-mono); font-weight:500; }
-.results-table td:nth-child(4){ font-family: var(--font-mono); font-weight:600; color: var(--pine-dark); }
+.results-table td:nth-child(5){ color: var(--amber); font-family: var(--font-mono); font-weight:500; }
+.results-table td:nth-child(6){ font-family: var(--font-mono); font-weight:600; color: var(--pine-dark); }
 .results-table tbody tr:last-child td{ border-bottom:none; }
 .results-table tbody tr:hover{ background: var(--paper); }
 .results-table tr.row-hidden{ display:none; }
@@ -397,23 +398,35 @@ input:focus, select:focus, textarea:focus{ border-color: var(--pine); outline:no
 }
 @media (prefers-reduced-motion: reduce){ .wave-divider svg{ animation: none; } }
 
-/* ----- Medal badges for the top 3 results ----- */
-.results-table tbody tr:nth-child(-n+3){ position:relative; }
-.results-table tbody tr:nth-child(-n+3) td:first-child{
-  position:relative; font-family: var(--font-mono); font-weight:700; color: var(--white);
+/* ----- Session filter tabs ----- */
+.filter-tabs-group{ display:flex; flex-direction:column; gap:12px; margin-top: 28px; }
+.session-tabs{ display:flex; gap:10px; flex-wrap:wrap; }
+.session-tab{
+  font-family: var(--font-mono); font-size:.8rem; letter-spacing:.04em;
+  padding: 9px 18px; border-radius: 999px; border: 1.5px solid var(--line);
+  background: var(--white); color: var(--ink-70); font-weight:600;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
-.results-table tbody tr:nth-child(-n+3) td:first-child::before{
+.session-tab:hover{ border-color: var(--pine); color: var(--ink); }
+.session-tab.is-active{ background: var(--pine); border-color: var(--pine); color: var(--white); }
+
+/* ----- Medal badges for the top 3 of each session ----- */
+.results-table tbody tr[data-medal] td:nth-child(3){
+  position:relative; font-family: var(--font-mono); font-weight:700; color: var(--white);
+  padding-left: 40px;
+}
+.results-table tbody tr[data-medal] td:nth-child(3)::before{
   content:""; position:absolute; left:8px; top:50%; transform: translateY(-50%);
   width:26px; height:26px;
   border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
   animation: blob-morph 9s ease-in-out infinite;
   z-index:-1;
 }
-.results-table tbody tr:nth-child(-n+3) td:first-child{ padding-left: 40px; }
-.results-table tbody tr:nth-child(1) td:first-child::before{ background: linear-gradient(135deg, #E8C55A, #C98A2C); }
-.results-table tbody tr:nth-child(2) td:first-child::before{ background: linear-gradient(135deg, #D7DCE1, #9AA5AF); }
-.results-table tbody tr:nth-child(3) td:first-child::before{ background: linear-gradient(135deg, #CB9A66, #8C6A45); }
-.results-table tbody tr:nth-child(-n+3){ background: color-mix(in srgb, var(--amber) 6%, transparent); }
+.results-table tbody tr[data-medal="gold"] td:nth-child(3)::before{ background: linear-gradient(135deg, #E8C55A, #C98A2C); }
+.results-table tbody tr[data-medal="silver"] td:nth-child(3)::before{ background: linear-gradient(135deg, #D7DCE1, #9AA5AF); }
+.results-table tbody tr[data-medal="bronze"] td:nth-child(3)::before{ background: linear-gradient(135deg, #CB9A66, #8C6A45); }
+.results-table tbody tr[data-medal]{ background: color-mix(in srgb, var(--amber) 6%, transparent); }
+.results-table td:nth-child(1), .results-table td:nth-child(2){ font-family: var(--font-mono); font-size:.78rem; color: var(--ink-70); }
 
 /* ----- File input (teacher degree upload) ----- */
 .file-field{
@@ -426,6 +439,62 @@ input:focus, select:focus, textarea:focus{ border-color: var(--pine); outline:no
 .file-field:hover{ border-color: var(--pine); }
 .file-field input[type="file"]{ border:none; padding:0; background:none; width:auto; flex:1; font-size:.85rem; }
 .file-field-hint{ font-size:.76rem; color: var(--ink-70); margin-top:4px; }
+
+/* ---------- LOGIN MODAL (front-end UI only — backend not connected yet) ---------- */
+.login-overlay{
+  position: fixed; inset:0; z-index: 200;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  backdrop-filter: blur(3px);
+  display:flex; align-items:center; justify-content:center; padding: 20px;
+  opacity:0; pointer-events:none;
+  transition: opacity .35s ease;
+}
+.login-overlay.is-open{ opacity:1; pointer-events:auto; }
+
+.login-modal{
+  position:relative;
+  width:100%; max-width: 420px;
+  background: var(--white);
+  border-radius: 55% 45% 60% 40% / 12% 10% 14% 12%;
+  border-radius: 20px;
+  padding: 34px 30px 28px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.25);
+  transform: scale(.9) translateY(18px);
+  opacity: 0;
+  transition: transform .5s cubic-bezier(.19,1,.22,1), opacity .4s ease;
+}
+.login-overlay.is-open .login-modal{ transform: scale(1) translateY(0); opacity:1; }
+
+.login-close{
+  position:absolute; top:14px; right:16px;
+  width:32px; height:32px; border-radius:50%;
+  background: var(--paper-2); border:none; color: var(--ink);
+  font-size:1.3rem; line-height:1; display:flex; align-items:center; justify-content:center;
+  transition: background .2s ease, transform .2s ease;
+}
+.login-close:hover{ background: var(--line); transform: rotate(90deg); }
+
+.login-tabs{ display:flex; gap:8px; margin-bottom: 22px; background: var(--paper); border-radius: 999px; padding:4px; }
+.login-tab{
+  flex:1; padding: 9px 12px; border-radius: 999px; border:none; background:none;
+  font-size:.85rem; font-weight:600; color: var(--ink-70);
+  transition: background .25s ease, color .25s ease;
+}
+.login-tab.is-active{ background: var(--pine); color: var(--white); }
+
+.login-panel{ display:none; }
+.login-panel.is-active{ display:block; animation: login-panel-in .4s cubic-bezier(.19,1,.22,1); }
+@keyframes login-panel-in{
+  from{ opacity:0; transform: translateY(8px) scale(.98); filter: blur(3px); }
+  to{ opacity:1; transform:none; filter:blur(0); }
+}
+.login-panel h3{ font-size: 1.2rem; margin-bottom:.25em; }
+.login-sub{ font-size:.88rem; color: var(--ink-70); margin-bottom: 18px; }
+.login-form{ display:flex; flex-direction:column; gap: 14px; }
+
+@media (prefers-reduced-motion: reduce){
+  .login-overlay, .login-modal, .login-panel.is-active{ transition:none; animation:none; }
+}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px){
