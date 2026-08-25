@@ -31,6 +31,68 @@ document.addEventListener("DOMContentLoaded", function () {
     revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
   }
 
+  /* ---------- 1.5 Login modal (UI only — no backend connected yet) ---------- */
+  var loginOverlay = document.getElementById("loginOverlay");
+  var loginOpenBtn = document.getElementById("loginOpenBtn");
+  var loginCloseBtn = document.getElementById("loginCloseBtn");
+  var loginTabs = document.querySelectorAll(".login-tab");
+  var loginPanels = document.querySelectorAll(".login-panel");
+
+  function openLogin() {
+    if (!loginOverlay) return;
+    loginOverlay.classList.add("is-open");
+    loginOverlay.setAttribute("aria-hidden", "false");
+  }
+  function closeLogin() {
+    if (!loginOverlay) return;
+    loginOverlay.classList.remove("is-open");
+    loginOverlay.setAttribute("aria-hidden", "true");
+  }
+
+  if (loginOpenBtn) loginOpenBtn.addEventListener("click", openLogin);
+  if (loginCloseBtn) loginCloseBtn.addEventListener("click", closeLogin);
+  if (loginOverlay) {
+    loginOverlay.addEventListener("click", function (e) {
+      if (e.target === loginOverlay) closeLogin();
+    });
+  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeLogin();
+  });
+
+  loginTabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      var target = tab.getAttribute("data-login-tab");
+      loginTabs.forEach(function (t) { t.classList.remove("is-active"); });
+      tab.classList.add("is-active");
+      loginPanels.forEach(function (p) {
+        p.classList.toggle("is-active", p.getAttribute("data-login-panel") === target);
+      });
+    });
+  });
+
+  // NOTE: No backend/database is connected yet. These forms only show a
+  // placeholder message for now — wire them up to a real server once one exists.
+  var studentLoginForm = document.getElementById("studentLoginForm");
+  var studentLoginNote = document.getElementById("studentLoginNote");
+  if (studentLoginForm) {
+    studentLoginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      studentLoginNote.textContent = "Login isn't connected to a server yet — coming soon.";
+      studentLoginNote.style.color = "#B3261E";
+    });
+  }
+
+  var adminLoginForm = document.getElementById("adminLoginForm");
+  var adminLoginNote = document.getElementById("adminLoginNote");
+  if (adminLoginForm) {
+    adminLoginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      adminLoginNote.textContent = "Login isn't connected to a server yet — coming soon.";
+      adminLoginNote.style.color = "#B3261E";
+    });
+  }
+
   /* ---------- 1. Mobile nav toggle ---------- */
   var header = document.querySelector(".site-header");
   var navToggle = document.getElementById("navToggle");
@@ -66,29 +128,64 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ---------- 3. Current year in footer ---------- */
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  /* ---------- 4. Matric Results 2026 — live search ---------- */
+  /* ---------- 4. Matric Results — branch + session tabs + live search ---------- */
   var resultSearch = document.getElementById("resultSearch");
   var resultsTable = document.getElementById("resultsTable");
   var noResultsNote = document.getElementById("noResultsNote");
+  var sessionTabs = document.getElementById("sessionTabs");
+  var branchTabs = document.getElementById("branchTabs");
+  var activeSession = "all";
+  var activeBranch = "all";
 
   if (resultSearch && resultsTable) {
     var rows = resultsTable.querySelectorAll("tbody tr");
 
-    resultSearch.addEventListener("input", function () {
+    function applyResultFilters() {
       var query = resultSearch.value.trim().toLowerCase();
       var visibleCount = 0;
 
       rows.forEach(function (row) {
-        var name = row.children[1].textContent.toLowerCase();
-        var roll = row.children[2].textContent.toLowerCase();
-        var matches = name.indexOf(query) !== -1 || roll.indexOf(query) !== -1;
+        var name = row.children[3].textContent.toLowerCase();
+        var roll = row.children[4].textContent.toLowerCase();
+        var matchesQuery = name.indexOf(query) !== -1 || roll.indexOf(query) !== -1;
+        var matchesSession = activeSession === "all" || row.getAttribute("data-session") === activeSession;
+        var matchesBranch = activeBranch === "all" || row.getAttribute("data-branch") === activeBranch;
+        var matches = matchesQuery && matchesSession && matchesBranch;
 
         row.classList.toggle("row-hidden", !matches);
         if (matches) visibleCount++;
       });
 
       noResultsNote.style.display = visibleCount === 0 ? "block" : "none";
-    });
+    }
+
+    resultSearch.addEventListener("input", applyResultFilters);
+
+    if (sessionTabs) {
+      sessionTabs.querySelectorAll(".session-tab").forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          sessionTabs.querySelectorAll(".session-tab").forEach(function (t) {
+            t.classList.remove("is-active");
+          });
+          tab.classList.add("is-active");
+          activeSession = tab.getAttribute("data-session");
+          applyResultFilters();
+        });
+      });
+    }
+
+    if (branchTabs) {
+      branchTabs.querySelectorAll(".session-tab").forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          branchTabs.querySelectorAll(".session-tab").forEach(function (t) {
+            t.classList.remove("is-active");
+          });
+          tab.classList.add("is-active");
+          activeBranch = tab.getAttribute("data-branch");
+          applyResultFilters();
+        });
+      });
+    }
   }
 
   /* ---------- 5. WhatsApp numbers (used for both forms) ---------- */
