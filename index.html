@@ -55,6 +55,7 @@
     </nav>
 
     <div class="header-cta">
+      <button type="button" class="btn btn-ghost" id="loginOpenBtn">Login</button>
       <a href="#admissions" class="btn btn-primary">Apply Now</a>
     </div>
 
@@ -63,6 +64,52 @@
     </button>
   </div>
 </header>
+
+<!-- ============ LOGIN MODAL (front-end only for now — no backend connected yet) ============ -->
+<div class="login-overlay" id="loginOverlay" aria-hidden="true">
+  <div class="login-modal" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+    <button type="button" class="login-close" id="loginCloseBtn" aria-label="Close login">&times;</button>
+
+    <div class="login-tabs" role="tablist">
+      <button type="button" class="login-tab is-active" data-login-tab="student">Student / Parent</button>
+      <button type="button" class="login-tab" data-login-tab="admin">Admin</button>
+    </div>
+
+    <div class="login-panel is-active" data-login-panel="student">
+      <h3 id="loginModalTitle">Student / Parent Login</h3>
+      <p class="login-sub">Log in with your roll number to view your result and admission status.</p>
+      <form class="login-form" id="studentLoginForm">
+        <div class="form-row">
+          <label for="loginRoll">Roll Number</label>
+          <input type="text" id="loginRoll" placeholder="e.g. 562173" required>
+        </div>
+        <div class="form-row">
+          <label for="loginPass">Password</label>
+          <input type="password" id="loginPass" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+        <p class="form-note" id="studentLoginNote"></p>
+      </form>
+    </div>
+
+    <div class="login-panel" data-login-panel="admin">
+      <h3>Admin Login</h3>
+      <p class="login-sub">For school staff to manage results and applications.</p>
+      <form class="login-form" id="adminLoginForm">
+        <div class="form-row">
+          <label for="adminUser">Username</label>
+          <input type="text" id="adminUser" placeholder="Admin username" required>
+        </div>
+        <div class="form-row">
+          <label for="adminPass">Password</label>
+          <input type="password" id="adminPass" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+        <p class="form-note" id="adminLoginNote"></p>
+      </form>
+    </div>
+  </div>
+</div>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="heroSection">
@@ -217,14 +264,14 @@
   <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C 240,10 480,70 720,40 C 960,10 1200,70 1440,40 L1440,100 L0,100 Z" fill="var(--paper-2)"/></svg>
 </div>
 
-<!-- ============ MATRIC RESULTS 2026 ============ -->
+<!-- ============ MATRIC RESULTS ============ -->
 <section class="section section-alt" id="results">
   <div class="wrap">
     <div class="section-head results-head reveal">
       <div>
         <p class="eyebrow">We Are Proud Of Our Students</p>
-        <h2>Matric Results 2026</h2>
-        <p class="section-sub">Alhamdulillah — the entire batch has passed. Total marks out of 1200. Our top 3 position holders are marked with a medal.</p>
+        <h2>Matric Results</h2>
+        <p class="section-sub">Alhamdulillah — results across both branches and sessions. Note: the marking scheme differs by year (2026 is out of 1200; 2012 is out of 1050). Top 3 position holders of each session are marked with a medal.</p>
       </div>
       <div class="results-search">
         <label for="resultSearch">Search by name or roll no.</label>
@@ -232,10 +279,25 @@
       </div>
     </div>
 
+    <div class="filter-tabs-group reveal">
+      <div class="session-tabs" id="branchTabs" role="tablist" aria-label="Select school branch">
+        <button type="button" class="session-tab is-active" data-branch="all">Both Branches</button>
+        <button type="button" class="session-tab" data-branch="girls">Girls Branch</button>
+        <button type="button" class="session-tab" data-branch="boys">Boys Branch</button>
+      </div>
+      <div class="session-tabs" id="sessionTabs" role="tablist" aria-label="Select result session">
+        <button type="button" class="session-tab is-active" data-session="all">All Sessions</button>
+        <button type="button" class="session-tab" data-session="2026">2026</button>
+        <button type="button" class="session-tab" data-session="2012">2012</button>
+      </div>
+    </div>
+
     <div class="table-scroll reveal">
       <table class="results-table" id="resultsTable">
         <thead>
           <tr>
+            <th>Branch</th>
+            <th>Session</th>
             <th>Rank</th>
             <th>Name</th>
             <th>Roll No.</th>
@@ -243,46 +305,131 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>Huzaira</td><td>562173</td><td>1076</td></tr>
-          <tr><td>2</td><td>Musfira</td><td>562830</td><td>1045</td></tr>
-          <tr><td>3</td><td>Noor Jannat</td><td>563238</td><td>1018</td></tr>
-          <tr><td>4</td><td>Fajar Imran</td><td>562527</td><td>1001</td></tr>
-          <tr><td>5</td><td>Ume-Maktum</td><td>562067</td><td>986</td></tr>
-          <tr><td>6</td><td>Hafsa Asif</td><td>562725</td><td>952</td></tr>
-          <tr><td>7</td><td>Aroosh Imran</td><td>562752</td><td>948</td></tr>
-          <tr><td>8</td><td>Maryam</td><td>565075</td><td>887</td></tr>
-          <tr><td>9</td><td>Hina</td><td>565561</td><td>880</td></tr>
-          <tr><td>10</td><td>Maleeha Idrees</td><td>562424</td><td>878</td></tr>
-          <tr><td>11</td><td>Amna Shahid</td><td>565536</td><td>877</td></tr>
-          <tr><td>12</td><td>Noor Fatima</td><td>563162</td><td>876</td></tr>
-          <tr><td>13</td><td>Aroosh</td><td>565457</td><td>873</td></tr>
-          <tr><td>14</td><td>Kashaf</td><td>561863</td><td>853</td></tr>
-          <tr><td>15</td><td>Bushra Aman</td><td>562330</td><td>852</td></tr>
-          <tr><td>16</td><td>Minahil Hafeez</td><td>562295</td><td>851</td></tr>
-          <tr><td>17</td><td>Noor Shafiq</td><td>562104</td><td>849</td></tr>
-          <tr><td>18</td><td>Hadia Razzaq</td><td>644503</td><td>848</td></tr>
-          <tr><td>19</td><td>Radia Fatimma</td><td>565088</td><td>837</td></tr>
-          <tr><td>20</td><td>Noor Fatima Tahir</td><td>565168</td><td>819</td></tr>
-          <tr><td>21</td><td>Kalsoom Irfan</td><td>643746</td><td>793</td></tr>
-          <tr><td>22</td><td>Esha Noor</td><td>645829</td><td>787</td></tr>
-          <tr><td>23</td><td>Esha Noor Shoukat</td><td>562210</td><td>759</td></tr>
-          <tr><td>24</td><td>Fatima Asim</td><td>561901</td><td>750</td></tr>
-          <tr><td>25</td><td>Razia</td><td>563137</td><td>743</td></tr>
-          <tr><td>26</td><td>Fatimma Irfan</td><td>562633</td><td>740</td></tr>
-          <tr><td>27</td><td>Memoona Zul</td><td>643901</td><td>722</td></tr>
-          <tr><td>28</td><td>Kashaf Imaan</td><td>644247</td><td>717</td></tr>
-          <tr><td>29</td><td>Sara Khan</td><td>565249</td><td>706</td></tr>
-          <tr><td>30</td><td>Maira Arshad</td><td>565339</td><td>690</td></tr>
-          <tr><td>31</td><td>Sadia Kashaf</td><td>562562</td><td>675</td></tr>
-          <tr><td>32</td><td>Ayesha Nasir</td><td>646287</td><td>627</td></tr>
-          <tr><td>33</td><td>Fajjar Shahid</td><td>646169</td><td>625</td></tr>
-          <tr><td>34</td><td>Amna Ramzan</td><td>643881</td><td>570</td></tr>
+          <tr data-branch="girls" data-session="2026" data-medal="gold"><td>Girls</td><td>2026</td><td>1</td><td>Huzaira</td><td>562173</td><td>1076</td></tr>
+          <tr data-branch="girls" data-session="2026" data-medal="silver"><td>Girls</td><td>2026</td><td>2</td><td>Musfira</td><td>562830</td><td>1045</td></tr>
+          <tr data-branch="girls" data-session="2026" data-medal="bronze"><td>Girls</td><td>2026</td><td>3</td><td>Noor Jannat</td><td>563238</td><td>1018</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>4</td><td>Fajar Imran</td><td>562527</td><td>1001</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>5</td><td>Ume-Maktum</td><td>562067</td><td>986</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>6</td><td>Hafsa Asif</td><td>562725</td><td>952</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>7</td><td>Aroosh Imran</td><td>562752</td><td>948</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>8</td><td>Maryam</td><td>565075</td><td>887</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>9</td><td>Hina</td><td>565561</td><td>880</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>10</td><td>Maleeha Idrees</td><td>562424</td><td>878</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>11</td><td>Amna Shahid</td><td>565536</td><td>877</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>12</td><td>Noor Fatima</td><td>563162</td><td>876</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>13</td><td>Aroosh</td><td>565457</td><td>873</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>14</td><td>Kashaf</td><td>561863</td><td>853</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>15</td><td>Bushra Aman</td><td>562330</td><td>852</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>16</td><td>Minahil Hafeez</td><td>562295</td><td>851</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>17</td><td>Noor Shafiq</td><td>562104</td><td>849</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>18</td><td>Hadia Razzaq</td><td>644503</td><td>848</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>19</td><td>Radia Fatimma</td><td>565088</td><td>837</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>20</td><td>Noor Fatima Tahir</td><td>565168</td><td>819</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>21</td><td>Kalsoom Irfan</td><td>643746</td><td>793</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>22</td><td>Esha Noor</td><td>645829</td><td>787</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>23</td><td>Esha Noor Shoukat</td><td>562210</td><td>759</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>24</td><td>Fatima Asim</td><td>561901</td><td>750</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>25</td><td>Razia</td><td>563137</td><td>743</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>26</td><td>Fatimma Irfan</td><td>562633</td><td>740</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>27</td><td>Memoona Zul</td><td>643901</td><td>722</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>28</td><td>Kashaf Imaan</td><td>644247</td><td>717</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>29</td><td>Sara Khan</td><td>565249</td><td>706</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>30</td><td>Maira Arshad</td><td>565339</td><td>690</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>31</td><td>Sadia Kashaf</td><td>562562</td><td>675</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>32</td><td>Ayesha Nasir</td><td>646287</td><td>627</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>33</td><td>Fajjar Shahid</td><td>646169</td><td>625</td></tr>
+          <tr data-branch="girls" data-session="2026"><td>Girls</td><td>2026</td><td>34</td><td>Amna Ramzan</td><td>643881</td><td>570</td></tr>
+          <tr data-branch="girls" data-session="2012" data-medal="gold"><td>Girls</td><td>2012</td><td>1</td><td>Aimen Sohail</td><td>417987</td><td>928</td></tr>
+          <tr data-branch="girls" data-session="2012" data-medal="silver"><td>Girls</td><td>2012</td><td>2</td><td>Huma Noor</td><td>417986</td><td>907</td></tr>
+          <tr data-branch="girls" data-session="2012" data-medal="bronze"><td>Girls</td><td>2012</td><td>3</td><td>Hafsa Batool</td><td>417967</td><td>903</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>4</td><td>Rabia Iqbal</td><td>417984</td><td>902</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>5</td><td>Atika Sajjad Ahmed</td><td>417985</td><td>875</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>6</td><td>Nimra Nadeem</td><td>417991</td><td>808</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>7</td><td>Rukhsar Khalid</td><td>417970</td><td>807</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>8</td><td>Anam Iqbal</td><td>417983</td><td>804</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>9</td><td>Zaib U Nisa</td><td>417964</td><td>789</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>10</td><td>Aqsa Tariq</td><td>417990</td><td>780</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>11</td><td>Sayra</td><td>417976</td><td>778</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>12</td><td>La Raib</td><td>417978</td><td>757</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>13</td><td>Zaib-Un-Nisa</td><td>417966</td><td>749</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>14</td><td>Majida Bi Bi</td><td>417993</td><td>740</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>15</td><td>Hifsa Javed</td><td>417992</td><td>736</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>16</td><td>Kainat Fatima</td><td>417975</td><td>734</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>17</td><td>Esma</td><td>417957</td><td>719</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>18</td><td>Ayesha Kishwar</td><td>417958</td><td>718</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>19</td><td>Zainab Aman Ul Haq</td><td>417971</td><td>718</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>20</td><td>Kiran Waris</td><td>417963</td><td>709</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>21</td><td>Aqsa Shahzadi</td><td>417974</td><td>703</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>22</td><td>Maria Manawar</td><td>417965</td><td>695</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>23</td><td>Mubbara Mushtaq</td><td>417973</td><td>689</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>24</td><td>Benish Sarfraz Ahmed</td><td>417988</td><td>683</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>25</td><td>Arshiya</td><td>417977</td><td>673</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>26</td><td>Nimra</td><td>417979</td><td>658</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>27</td><td>Sunaina Shafiq Butt</td><td>417972</td><td>653</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>28</td><td>Saba Sundas</td><td>417959</td><td>652</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>29</td><td>Jonica Javed</td><td>417989</td><td>647</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>30</td><td>Zainab Dillawer</td><td>417981</td><td>634</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>31</td><td>Sameena Bi Bi</td><td>417994</td><td>569</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>32</td><td>Hifza Majeed</td><td>417969</td><td>563</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>33</td><td>Faryal Fatima</td><td>417968</td><td>557</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>34</td><td>Adila Iqbal</td><td>417960</td><td>555</td></tr>
+          <tr data-branch="girls" data-session="2012"><td>Girls</td><td>2012</td><td>35</td><td>Sanober Sabir Jan</td><td>417980</td><td>546</td></tr>
+          <tr data-branch="boys" data-session="2012" data-medal="gold"><td>Boys</td><td>2012</td><td>1</td><td>Tayyab Danial Aslam</td><td>450825</td><td>908</td></tr>
+          <tr data-branch="boys" data-session="2012" data-medal="silver"><td>Boys</td><td>2012</td><td>2</td><td>Husnain Aziz</td><td>450824</td><td>869</td></tr>
+          <tr data-branch="boys" data-session="2012" data-medal="bronze"><td>Boys</td><td>2012</td><td>3</td><td>Shabab Umer</td><td>450826</td><td>799</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>4</td><td>Muhammad Arslan Tayyab</td><td>450803</td><td>791</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>5</td><td>Abdullah</td><td>450818</td><td>776</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>6</td><td>Muhammad Ali</td><td>450814</td><td>772</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>7</td><td>Khurram Akram</td><td>450820</td><td>763</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>8</td><td>Muhammad Fahad Ali</td><td>450794</td><td>755</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>9</td><td>Abu Bakar Asees</td><td>450830</td><td>720</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>10</td><td>Ali Haider</td><td>450845</td><td>718</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>11</td><td>Kamran</td><td>450823</td><td>715</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>12</td><td>Tayyab Sarwar</td><td>450840</td><td>700</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>13</td><td>Afzan Ahmed</td><td>450839</td><td>676</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>14</td><td>Zeeshan Munawar</td><td>450828</td><td>664</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>15</td><td>Mohsin Ali</td><td>450805</td><td>638</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>16</td><td>Muhammad Mohaib Hassan</td><td>450819</td><td>628</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>17</td><td>Muhammad Amnan</td><td>450838</td><td>615</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>18</td><td>Zuhaib Zahoor</td><td>450837</td><td>594</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>19</td><td>Muhammad Arslan</td><td>450800</td><td>584</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>20</td><td>Zain Iqbal</td><td>450816</td><td>581</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>21</td><td>Shahbaz Hussain</td><td>450831</td><td>580</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>22</td><td>Ali Sheir Yar</td><td>450834</td><td>580</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>23</td><td>Waleed Saleem Butt</td><td>450806</td><td>574</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>24</td><td>Afzaal Waris</td><td>450827</td><td>568</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>25</td><td>Muhammad Fizan Ali</td><td>450841</td><td>567</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>26</td><td>Muhammad Abubakar</td><td>450842</td><td>566</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>27</td><td>Muhammad Arfan</td><td>450817</td><td>560</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>28</td><td>Ghalib Ahmed</td><td>450847</td><td>560</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>29</td><td>Adeel Nazir</td><td>450829</td><td>551</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>30</td><td>Rahman Ali</td><td>450848</td><td>545</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>31</td><td>Oman</td><td>450809</td><td>544</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>32</td><td>Ahmed Tanveer</td><td>450813</td><td>542</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>33</td><td>Nouman Ahmed</td><td>450810</td><td>539</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>34</td><td>Sajeel Sajid</td><td>450812</td><td>539</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>35</td><td>Muhammad Zubair</td><td>450844</td><td>534</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>36</td><td>Ali Raza</td><td>450797</td><td>526</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>37</td><td>Muhammad Ameer Hamza</td><td>450804</td><td>524</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>38</td><td>Khalil Ullah</td><td>450821</td><td>518</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>39</td><td>Khawaja Muhammad Nomair</td><td>450808</td><td>507</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>40</td><td>Muhammad Hamza</td><td>450836</td><td>504</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>41</td><td>Sheeraz Akram</td><td>450832</td><td>503</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>42</td><td>Khawaja Rayes Ahmed</td><td>450835</td><td>500</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>43</td><td>Sameer Ullah Khan</td><td>450793</td><td>489</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>44</td><td>Ali Abbas</td><td>450833</td><td>486</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>45</td><td>Khizar Tariq</td><td>450843</td><td>486</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>46</td><td>Shahroz Butt</td><td>450802</td><td>479</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>47</td><td>Hassan Ali</td><td>450796</td><td>476</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>48</td><td>Usama Javed</td><td>450815</td><td>469</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>49</td><td>Zain Waheed</td><td>450811</td><td>464</td></tr>
+          <tr data-branch="boys" data-session="2012"><td>Boys</td><td>2012</td><td>50</td><td>Muhammad Farooq</td><td>450822</td><td>439</td></tr>
         </tbody>
       </table>
       <p class="form-note" id="noResultsNote" style="display:none;">No matching student found.</p>
     </div>
 
-    <p class="results-banner">Alhamdulillah! The entire batch has passed.<br>
+    <p class="results-banner">Alhamdulillah! Our students continue to shine, session after session.<br>
       <small>Your hard work, dedication and perseverance have led to this achievement.</small>
     </p>
   </div>
